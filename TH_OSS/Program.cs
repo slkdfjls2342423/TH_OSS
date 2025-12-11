@@ -8,6 +8,7 @@ namespace TH_OSS
 {
     internal static class Program
     {
+        public static string conStr = "Data Source=.;Initial Catalog=QLSinhVien;Integrated Security=True;";
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
