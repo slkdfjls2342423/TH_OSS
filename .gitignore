@@ -48,7 +48,6 @@ _ReSharper*/
 
 ## Cache
 *.cache
-*.config
 *.dbmdl
 *.jfm
 
