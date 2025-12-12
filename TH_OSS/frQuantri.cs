@@ -85,8 +85,49 @@ namespace TH_OSS
             txtDiem2.Text = dgvQuantri.Rows[i].Cells[5].Value.ToString();
             txtDiem3.Text = dgvQuantri.Rows[i].Cells[6].Value.ToString();
         }
+        private bool InputValidation()
+        {
+            int nullString = isnotEmpty(txtMSSV.Text)*isnotEmpty(txtTenSV.Text)*isnotEmpty(txtLop.Text)*isnotEmpty(txtDiem1.Text)*isnotEmpty(txtDiem2.Text) * isnotEmpty(txtDiem3.Text) * isnotEmpty(cbGioitinh.Text);
+            if (nullString == 0)
+            {
+                MessageBox.Show("Nhap day du thong tin");
+                return false;
+            }
+            int diem1 ;
+            int diem2 ;
+            int diem3 ;
+            try
+            {
+                diem1 = int.Parse(txtDiem1.Text);
+                diem2 = int.Parse(txtDiem2.Text);
+                diem3 = int.Parse(txtDiem3.Text);
+
+            }
+            catch
+            {
+                MessageBox.Show("loi diem");
+                return false;
+            }
+            if (diem1 < 0 || diem1 > 10 || diem2 < 0 || diem2 > 10 || diem3 < 0 || diem3 > 10)
+            {
+                MessageBox.Show("Diem phai >= 0 va <=10");
+                return false;
+            }
+            if(cbGioitinh.Text!="Nam" && cbGioitinh.Text != "Nu")
+            {
+                MessageBox.Show("NHap gioi tinh");
+                return false;
+            }
+            return true;
+        }
+        private int isnotEmpty(string text)
+        {
+            return string.IsNullOrEmpty(text)?0:1;
+        }
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if (!InputValidation())
+                return;
             try
             {
                 command = connection.CreateCommand();
