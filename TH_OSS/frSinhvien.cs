@@ -16,5 +16,10 @@ namespace TH_OSS
         {
             InitializeComponent();
         }
+        public frSinhvien(long studentId)
+        {
+            InitializeComponent();
+            //this.studentId = studentId;
+        }
     }
 }
