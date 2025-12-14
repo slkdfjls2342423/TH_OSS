@@ -47,15 +47,10 @@ namespace TH_OSS
 
         private void btnDangxuat_Click(object sender, EventArgs e)
         {
-
-
             frDangnhap loginForm = new frDangnhap();
             this.Hide();
             loginForm.Show();
         }
-
-
-
         private void frSinhvien_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
