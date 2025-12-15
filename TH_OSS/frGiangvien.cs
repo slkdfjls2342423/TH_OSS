@@ -102,29 +102,52 @@ namespace TH_OSS
         }
 
 
-
-        private void btnThem_Click(object sender, EventArgs e)
+        private bool InputValidation()
         {
-            if (dgvGiangvien.SelectedRows.Count == 0)
+            int nullString = isnotEmpty(txtMSSV.Text) * isnotEmpty(txtTenSV.Text) * isnotEmpty(txtLop.Text) * isnotEmpty(txtmon1.Text) * isnotEmpty(txtmon2.Text) * isnotEmpty(txtmon3.Text);
+            if (nullString == 0)
             {
-                MessageBox.Show("Vui lòng chọn sinh viên trước khi thêm điểm!");
-                return;
+                MessageBox.Show("Nhap day du thong tin");
+                return false;
             }
+            int diem1;
+            int diem2;
+            int diem3;
+            try
+            {
+                diem1 = int.Parse(txtmon1.Text);
+                diem2 = int.Parse(txtmon2.Text);
+                diem3 = int.Parse(txtmon3.Text);
 
-            command = connection.CreateCommand();
-            command.CommandText = "INSERT INTO Diem (Mon1,Mon2 ,Mon3) VALUES (@Mon1, @Mon2, @Mon3)";
-            command.Parameters.AddWithValue("@Mon1", txtmon1.Text);
-            command.Parameters.AddWithValue("@Mon2", txtmon2.Text);
-            command.Parameters.AddWithValue("@Mon3", txtmon3.Text);
-            command.ExecuteNonQuery();
-            loaddata();
-            MessageBox.Show("Điểm đã được thêm thành công");
-
+            }
+            catch
+            {
+                MessageBox.Show("loi diem");
+                return false;
+            }
+            if (diem1 < 0 || diem1 > 10 || diem2 < 0 || diem2 > 10 || diem3 < 0 || diem3 > 10)
+            {
+                MessageBox.Show("Diem phai >= 0 va <=10");
+                return false;
+            }
+            return true;
+        }
+        private int isnotEmpty(string text)
+        {
+            return string.IsNullOrEmpty(text) ? 0 : 1;
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-
+            if (dgvGiangvien.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn sinh viên!");
+                return;
+            }
+            if (!InputValidation())
+            {
+                return;
+            }
             string query = "UPDATE Diem SET Mon1 = @Mon1, Mon2 = @Mon2, Mon3 = @Mon3 WHERE MSSV = @MSSV";
             command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@MSSV", txtMSSV.Text);
