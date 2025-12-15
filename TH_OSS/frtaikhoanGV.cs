@@ -73,7 +73,7 @@ namespace TH_OSS
         }
         private bool InputValidation()
         {
-            int nullString = isnotEmpty(txtlecturerid.Text) * isnotEmpty(txtusername.Text) * isnotEmpty(txtpassword.Text) ;
+            int nullString =  isnotEmpty(txtusername.Text) * isnotEmpty(txtpassword.Text) ;
             if (nullString == 0)
             {
                 MessageBox.Show("Nhap day du thong tin");
