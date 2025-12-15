@@ -110,14 +110,14 @@ namespace TH_OSS
                 MessageBox.Show("Nhap day du thong tin");
                 return false;
             }
-            int diem1;
-            int diem2;
-            int diem3;
+            double diem1;
+            double diem2;
+            double diem3;
             try
             {
-                diem1 = int.Parse(txtmon1.Text);
-                diem2 = int.Parse(txtmon2.Text);
-                diem3 = int.Parse(txtmon3.Text);
+                diem1 = double.Parse(txtmon1.Text);
+                diem2 = double.Parse(txtmon2.Text);
+                diem3 = double.Parse(txtmon3.Text);
 
             }
             catch

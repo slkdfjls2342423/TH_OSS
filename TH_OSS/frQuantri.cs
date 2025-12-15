@@ -93,14 +93,14 @@ namespace TH_OSS
                 MessageBox.Show("Nhap day du thong tin");
                 return false;
             }
-            int diem1 ;
-            int diem2 ;
-            int diem3 ;
+            double diem1 ;
+            double diem2 ;
+            double diem3 ;
             try
             {
-                diem1 = int.Parse(txtDiem1.Text);
-                diem2 = int.Parse(txtDiem2.Text);
-                diem3 = int.Parse(txtDiem3.Text);
+                diem1 = double.Parse(txtDiem1.Text);
+                diem2 = double.Parse(txtDiem2.Text);
+                diem3 = double.Parse(txtDiem3.Text);
 
             }
             catch
@@ -154,7 +154,8 @@ namespace TH_OSS
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-
+            if (!InputValidation())
+                return;
 
             string query = "UPDATE Diem SET TenSV = @TenSV, Lop = @Lop, GioiTinh = @GioiTinh, Mon1 = @Mon1, Mon2 = @Mon2, Mon3 = @Mon3 WHERE MSSV = @MSSV";
             command = new SqlCommand(query, connection);
